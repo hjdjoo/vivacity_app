@@ -12,8 +12,6 @@ export const getPersonalDetails = async (_req: Request, res: Response, next: Nex
       .from("personal_details")
       .select("*")
 
-    console.log('getPersonalDetails/data: ', data);
-
     if (error) {
       throw new Error("Couldn't retrieve from database!")
     }
@@ -47,7 +45,6 @@ export const updatePersonalDetails = async (req: Request, res: Response, next: N
       .select();
 
     if (error) {
-      console.log(error);
       throw new Error("Couldn't update info in database!")
     }
 
@@ -101,7 +98,6 @@ export const checkPerson = async (_req: Request, res: Response, next: NextFuncti
       .select("*")
       .match({ first_name: "Hee Je", last_name: "Joo" })
 
-    // console.log(data, error);
     if (data?.length) {
       throw new Error("Hee Je is already alive");
     }
