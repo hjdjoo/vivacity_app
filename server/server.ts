@@ -14,13 +14,10 @@ app.use('/awesome', apiRouter);
 
 /** unknown route handler */
 app.use('/', (_req: Request, res: Response) => {
-
   return res.status(404).send("Unknown Route")
-
 })
 
 /** global error handler */
-
 const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 
   const defaultError: ServerError = {
@@ -34,11 +31,11 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   const errObj = Object.assign(defaultError, err);
 
   return res.status(errObj.status).json(errObj);
-
-}
+};
 
 app.use(errorHandler);
 
+/** Start server */
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
